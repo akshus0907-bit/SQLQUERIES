@@ -1,0 +1,29 @@
+mysql> select * from employees;
++------+---------+---------+-------------------+----------+-----------------------+----------+------+
+| id   | name    | salary  | email             | contact  | address               | city     | job  |
++------+---------+---------+-------------------+----------+-----------------------+----------+------+
+|    1 | rahul   |   60000 | NULL              | 98765432 | 123 street road pune  | pune     | NULL |
+|    2 | ramesh  |   80000 | ramesh@email.com  |  9123456 | 456 avenue pune       | pune     | NULL |
+|    3 | rushi   | 1000000 | rushi@email.com   |  9122345 | 456 waghnager jalgaon | jalgaon  | NULL |
+|    4 | amit    |  100000 | info@gmail.com    |    98755 | 456 warje flat pune   | pune     | NULL |
+|    5 | Ram     |    3000 | ram@gmail.com     |  9873478 | 456 csmt munbai       | mumbai   | NULL |
+|    6 | Shyam   |   40000 | ram@email.com     |  1288736 | 4 csmt nashik         | nashik   | NULL |
+|    7 | Shrvari |   25000 | sharvri@email.com | 12887567 | 89 csmt solapur       | solapur  | NULL |
+|    8 | sarika  |  670000 | sarika@email.com  |     NULL | 67 csmt saputara      | saputara | NULL |
+|    9 | vivek   |    5000 | vivek@email.com   |     NULL | warjs abc sangli      | sangli   | NULL |
+|   10 | sureh   |       0 | sure@email.com    |   245798 | xyz dehil             | delhi    | NULL |
+|   11 | usha    |   45000 | usha@gmail.com    |  4566767 | null                  | chennai  | NULL |
+|   12 | priyank |   34500 | priyank@email.com |  5865438 | wakad street dhule    | dhule    | NULL |
+|   13 | sagar   |   56000 | sagar@54email.com |   446677 | primpery chinchwad    | primpary | NULL |
++------+---------+---------+-------------------+----------+-----------------------+----------+------+
+13 rows in set (0.06 sec)
+
+mysql> select *from employees where city='pune';
++------+--------+--------+------------------+----------+----------------------+------+------+
+| id   | name   | salary | email            | contact  | address              | city | job  |
++------+--------+--------+------------------+----------+----------------------+------+------+
+|    1 | rahul  |  60000 | NULL             | 98765432 | 123 street road pune | pune | NULL |
+|    2 | ramesh |  80000 | ramesh@email.com |  9123456 | 456 avenue pune      | pune | NULL |
+|    4 | amit   | 100000 | info@gmail.com   |    98755 | 456 warje flat pune  | pune | NULL |
++------+--------+--------+------------------+----------+----------------------+------+------+
+3 rows in set (0.03 sec)
