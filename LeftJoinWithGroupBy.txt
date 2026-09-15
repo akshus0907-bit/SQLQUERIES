@@ -1,0 +1,40 @@
+
+mysql> select *from productData;
++---------+--------------+----------+
+| prod_id | product_name | categ_id |
++---------+--------------+----------+
+|     101 | laptop       |        1 |
+|     102 | mobile       |        1 |
+|     103 | shirt        |        2 |
+|     104 | jeans        |        2 |
+|     105 | java book    |        3 |
++---------+--------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select *from categoryData;
++----------+-------------+
+| categ_id | categ_name  |
++----------+-------------+
+|        1 | Electronics |
+|        2 | clothing    |
+|        3 | book        |
+|        4 | furniture   |
++----------+-------------+
+4 rows in set (0.01 sec)
+
+
+mysql> select c.categ_name,
+    -> count(p.product_name) as product_count
+    -> from categoryData c
+    -> left join  productData p
+    -> on c.categ_id=p.categ_id
+    -> group by c.categ_name;
++-------------+---------------+
+| categ_name  | product_count |
++-------------+---------------+
+| Electronics |             2 |
+| clothing    |             2 |
+| book        |             1 |
+| furniture   |             0 |
++-------------+---------------+
+4 rows in set (0.00 sec)
