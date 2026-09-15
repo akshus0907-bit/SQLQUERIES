@@ -1,0 +1,35 @@
+
+mysql> select *from projectList;
++------------+----------------+
+| project_id | project_name   |
++------------+----------------+
+|         10 | BankingApp     |
+|         20 | E-Commerce     |
+|         30 | HospitalSystem |
+|         40 | Inventory      |
++------------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> select *from TeamMembers;
++-----------+-------------+------------+
+| member_id | member_name | project_id |
++-----------+-------------+------------+
+|         1 | Akshy       |         10 |
+|         2 | rushi       |         10 |
+|         3 | Rahul       |         20 |
+|         4 | senhal      |         20 |
++-----------+-------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select p.project_name , t.member_name from projectList p left join TeamMembers t on t.project_id=p.project_id;
++----------------+-------------+
+| project_name   | member_name |
++----------------+-------------+
+| BankingApp     | Akshy       |
+| BankingApp     | rushi       |
+| E-Commerce     | Rahul       |
+| E-Commerce     | senhal      |
+| HospitalSystem | NULL        |
+| Inventory      | NULL        |
++----------------+-------------+
+6 rows in set (0.01 sec)
