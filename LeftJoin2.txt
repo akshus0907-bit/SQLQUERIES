@@ -1,0 +1,30 @@
+
+mysql> select *from Employee;
++-------------+---------------+------------+--------+------------+
+| employee_id | employee_name | manager_id | salary | department |
++-------------+---------------+------------+--------+------------+
+|           1 | amit          |       NULL |  90000 | IT         |
+|           2 | rahul         |          1 |  60000 | IT         |
+|           3 | priya         |          1 |  65000 | IT         |
+|           4 | sneha         |          2 |  50000 | HR         |
+|           5 | rushi         |          2 |  55000 | HR         |
+|           6 | rohit         |          3 |  48000 | sales      |
+|           7 | kiran         |          3 |  45000 | sales      |
+|           8 | pooja         |          4 |  40000 | HR         |
++-------------+---------------+------------+--------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select e.employee_name ,m.employee_name from Employee e
+    -> left join Employee m on e.manager_id=m.employee_id;
++---------------+---------------+
+| employee_name | employee_name |
++---------------+---------------+
+| amit          | NULL          |
+| rahul         | amit          |
+| priya         | amit          |
+| sneha         | rahul         |
+| rushi         | rahul         |
+| rohit         | priya         |
+| kiran         | priya         |
+| pooja         | sneha         |
++---------------+---------------+

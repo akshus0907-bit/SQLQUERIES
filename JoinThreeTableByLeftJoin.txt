@@ -1,0 +1,53 @@
+mysql> select *from departmentData;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|      10 | IT        |
+|      20 | HR        |
+|      30 | Finance   |
+|      40 | Marketing |
++---------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> select *from EmployeeData;
++--------+----------+---------+
+| emp_id | emp_name | dept_id |
++--------+----------+---------+
+|      1 | Amit     |      10 |
+|      2 | rishi    |      20 |
+|      3 | rahul    |      10 |
+|      4 | priya    |      30 |
+|      5 | karan    |      40 |
++--------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select *from salaryData;
++--------+--------+--------+
+| sal_id | salary | emp_id |
++--------+--------+--------+
+|    101 |  40000 |      1 |
+|    102 |  50000 |      2 |
+|    103 | 450000 |      3 |
+|    104 | 420000 |      1 |
+|    105 |  55000 |      4 |
++--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select d.dept_name,
+    -> sum(s.salary) as total_salary
+    -> from departmentData d
+    -> left join EmployeeData e
+    -> on d.dept_id=e.dept_id
+    -> left join salaryData s
+    -> on e.emp_id=s.emp_id
+    -> where d.dept_name like 'i%'
+    -> or d.dept_name like 'h%'
+    -> group by d.dept_name
+    -> having sum(s.salary>80000)
+    -> order by total_salary desc;
++-----------+--------------+
+| dept_name | total_salary |
++-----------+--------------+
+| IT        |       910000 |
++-----------+--------------+
+1 row in set (0.04 sec)
