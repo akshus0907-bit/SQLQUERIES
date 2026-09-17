@@ -1,0 +1,22 @@
+mysql> SELECT * FROM Student;
++------------+--------------+-------------------+------------+
+| student_id | student_name | email             | mobile     |
++------------+--------------+-------------------+------------+
+|        101 | Akshata      | akshata@gmail.com | 9876543210 |
+|        102 | Rahul        | rahul@gmail.com   | 9876543211 |
+|        103 | Priya        | priya@gmail.com   | 9876543212 |
++------------+--------------+-------------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Student
+    -> WHERE student_id = 101
+    -> AND student_name = 'Akshata';
++------------+--------------+-------------------+------------+
+| student_id | student_name | email             | mobile     |
++------------+--------------+-------------------+------------+
+|        101 | Akshata      | akshata@gmail.com | 9876543210 |
++------------+--------------+-------------------+------------+
+1 row in set (0.00 sec)
+
+mysql>

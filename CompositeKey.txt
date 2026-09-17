@@ -1,0 +1,12 @@
+mysql> create table studentcourese(student_id int,course_id int,course_name varchar(20),primary key(student_id,course_id));
+Query OK, 0 rows affected (0.07 sec)
+mysql> select *from studentcourese;
++------------+-----------+-------------+
+| student_id | course_id | course_name |
++------------+-----------+-------------+
+|        101 |         1 | Java        |
+|        101 |         2 | SQL         |
+|        102 |         1 | Java        |
+|        102 |         2 | SQL         |
++------------+-----------+-------------+
+4 rows in set (0.00 sec)
