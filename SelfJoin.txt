@@ -1,0 +1,25 @@
+
+mysql> select *from Employee;
++-------------+---------------+------------+--------+------------+
+| employee_id | employee_name | manager_id | salary | department |
++-------------+---------------+------------+--------+------------+
+|           1 | amit          |       NULL |  90000 | IT         |
+|           2 | rahul         |          1 |  60000 | IT         |
+|           3 | priya         |          1 |  65000 | IT         |
+|           4 | sneha         |          2 |  50000 | HR         |
+|           5 | rushi         |          2 |  55000 | HR         |
+|           6 | rohit         |          3 |  48000 | sales      |
+|           7 | kiran         |          3 |  45000 | sales      |
+|           8 | pooja         |          4 |  40000 | HR         |
++-------------+---------------+------------+--------+------------+
+
+
+mysql> select m.employee_name as Manager ,
+    -> count(e.employee_id) as Total_employee from employee m join employee e on e.manager_id=m.employee_id group by m.employee_name having count(e.employee_id)>1;
++---------+----------------+
+| Manager | Total_employee |
++---------+----------------+
+| amit    |              2 |
+| rahul   |              2 |
+| priya   |              2 |
++---------+----------------+
