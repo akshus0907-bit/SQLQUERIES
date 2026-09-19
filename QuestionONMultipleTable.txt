@@ -1,0 +1,69 @@
+mysql> select *from course;
++-----+------------------+
+| cid | cname            |
++-----+------------------+
+|   1 | Computer Science |
+|   2 | Data Science     |
+|   3 | Mechanical Eng   |
++-----+------------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student;
++-----+---------------+
+| sid | sname         |
++-----+---------------+
+|   1 | Alice Smith   |
+|   2 | Bob Jones     |
+|   3 | Charlie Brown |
++-----+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from batch;
++-----+-----------+------+
+| bid | bname     | cid  |
++-----+-----------+------+
+|   1 | CS-2026-A |    1 |
+|   2 | DS-2026-B |    2 |
+|   3 | ME-2026-A |    3 |
++-----+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select *from sbjoin;
++-----+-----+
+| sid | bid |
++-----+-----+
+|   1 |   1 |
+|   2 |   2 |
+|   3 |   3 |
++-----+-----+
+3 rows in set (0.04 sec)
+
+mysql> select *from csjoin;
++-----+-----+
+| cid | sid |
++-----+-----+
+|   1 |   1 |
+|   2 |   2 |
+|   3 |   3 |
++-----+-----+
+3 rows in set (0.00 sec)
+
+mysql> select *from placement;
++-----+-----------+---------+------+
+| pid | compname  | package | sid  |
++-----+-----------+---------+------+
+|   1 | Google    |      25 |    1 |
+|   2 | Microsoft |      30 |    2 |
+|   3 | Tesla     |      18 |    3 |
++-----+-----------+---------+------+
+
+
+
+mysql> select b.bname,c.cname from batch b join course c on b.cid=c.cid;
++-----------+------------------+
+| bname     | cname            |
++-----------+------------------+
+| CS-2026-A | Computer Science |
+| DS-2026-B | Data Science     |
+| ME-2026-A | Mechanical Eng   |
++-----------+------------------+
