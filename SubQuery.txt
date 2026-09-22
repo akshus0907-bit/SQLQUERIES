@@ -1,0 +1,17 @@
+mysql> select *from employee;
++--------+----------+--------+---------+
+| emp_id | emp_name | salary | dept_id |
++--------+----------+--------+---------+
+|    101 | ram      |  80000 |       1 |
+|    102 | ram      |  40000 |       2 |
+|    103 | Amit     |  50000 |       1 |
++--------+----------+--------+---------+
+
+
+
+mysql> select emp_name from employee where salary=(select max(salary) from employee);
++----------+
+| emp_name |
++----------+
+| ram      |
++----------+

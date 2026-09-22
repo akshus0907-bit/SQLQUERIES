@@ -1,0 +1,42 @@
+
++----+---------+--------------+
+| id | name    | courses      |
++----+---------+--------------+
+|  1 | akshata | java,sql     |
+|  2 | rahul   | java,testing |
+|  3 | priya   | sql          |
++----+---------+--------------+
+3 rows in set (0.01 sec)
+
+
+
+mysql> CREATE TABLE student_course_1nf (
+    ->     student_id INT,
+    ->     student_name VARCHAR(50),
+    ->     course_name VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO student_course_1nf
+    -> VALUES
+    -> (1, 'Akshata', 'Java'),
+    -> (1, 'Akshata', 'SQL'),
+    -> (2, 'Rahul', 'Java'),
+    -> (2, 'Rahul', 'Testing'),
+    -> (3, 'Priya', 'SQL');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from student_course_1nf;
++------------+--------------+-------------+
+| student_id | student_name | course_name |
++------------+--------------+-------------+
+|          1 | Akshata      | Java        |
+|          1 | Akshata      | SQL         |
+|          2 | Rahul        | Java        |
+|          2 | Rahul        | Testing     |
+|          3 | Priya        | SQL         |
++------------+--------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql>
