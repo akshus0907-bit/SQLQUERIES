@@ -1,0 +1,47 @@
+ysql> select *from employee;
++--------+----------+---------+--------+
+| emp_id | emp_name | dept_id | salary |
++--------+----------+---------+--------+
+|      1 | amit     |      10 |   4000 |
+|      2 | rahul    |      10 |   4200 |
+|      3 | rushi    |      20 |  49000 |
+|      4 | karan    |      20 |  99000 |
+|      5 | sneha    |      30 |  30000 |
+|      6 | priya    |      20 | 390000 |
++--------+----------+---------+--------+
+6 rows in set (0.06 sec)
+
+mysql> create view PuneEmployee as
+    -> select emp_id,emp_name,salary from employee;
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> select *from PuneEmployee;
++--------+----------+--------+
+| emp_id | emp_name | salary |
++--------+----------+--------+
+|      1 | amit     |   4000 |
+|      2 | rahul    |   4200 |
+|      3 | rushi    |  49000 |
+|      4 | karan    |  99000 |
+|      5 | sneha    |  30000 |
+|      6 | priya    | 390000 |
++--------+----------+--------+
+6 rows in set (0.04 sec)
+
+mysql> create view EmployeeName as
+    -> select emp_id,emp_name from employee;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from EmployeeName;
++--------+----------+
+| emp_id | emp_name |
++--------+----------+
+|      1 | amit     |
+|      2 | rahul    |
+|      3 | rushi    |
+|      4 | karan    |
+|      5 | sneha    |
+|      6 | priya    |
++--------+----------+
+6 rows in set (0.00 sec)

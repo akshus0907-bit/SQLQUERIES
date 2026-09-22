@@ -1,0 +1,20 @@
+
+mysql> select *from staff;
++----------+------------+--------+
+| staff_id | staff_name | salary |
++----------+------------+--------+
+|        1 | asha       |  35000 |
+|        2 | ravi       |  42000 |
+|        3 | meena      |  28000 |
+|        4 | suresh     |  50000 |
+|        5 | tina       |  28000 |
++----------+------------+--------+
+
+ysql> select staff_name ,salary from staff where salary=(select min(salary) from staff);
++------------+--------+
+| staff_name | salary |
++------------+--------+
+| meena      |  28000 |
+| tina       |  28000 |
++------------+--------+
+2 rows in set (0.00 sec)

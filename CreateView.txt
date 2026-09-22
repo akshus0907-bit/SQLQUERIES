@@ -1,0 +1,32 @@
+mysql> select *from Project;
++-----+-----------+----------+
+| pid | projname  | location |
++-----+-----------+----------+
+|   1 | Banking   | Pune     |
+|   2 | ECommerce | Mumbai   |
+|   3 | Hospital  | Pune     |
++-----+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select *from EmployeeNew;
++-----+---------+--------+------+
+| eid | empname | salary | pid  |
++-----+---------+--------+------+
+|   1 | Amit    |  50000 |    1 |
+|   2 | Rahul   |  70000 |    2 |
+|   3 | Neha    |  60000 |    1 |
++-----+---------+--------+------+
+3 rows in set (0.00 sec)
+
+
+mysql> select e.empname,e.salary,p.projname,p.location from Project p join EmployeeNew e on p.pid=e.pid;
++---------+--------+-----------+----------+
+| empname | salary | projname  | location |
++---------+--------+-----------+----------+
+| Amit    |  50000 | Banking   | Pune     |
+| Neha    |  60000 | Banking   | Pune     |
+| Rahul   |  70000 | ECommerce | Mumbai   |
++---------+--------+-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
