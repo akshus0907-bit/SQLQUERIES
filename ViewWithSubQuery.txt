@@ -1,0 +1,24 @@
+mysql> select *from employee;
++--------+----------+---------+--------+
+| emp_id | emp_name | dept_id | salary |
++--------+----------+---------+--------+
+|      1 | amit     |      10 |   4000 |
+|      2 | rahul    |      10 |   4200 |
+|      3 | rushi    |      20 |  49000 |
+|      4 | karan    |      20 |  99000 |
+|      5 | sneha    |      30 |  30000 |
+|      6 | priya    |      20 | 390000 |
++--------+----------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> create view AboveAverageEmployee as
+    -> select emp_name,salary  from employee where salary >(select avg(salary) from employee);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select *from AboveAverageEmployee;
++----------+--------+
+| emp_name | salary |
++----------+--------+
+| karan    |  99000 |
+| priya    | 390000 |
++----------+--------+
