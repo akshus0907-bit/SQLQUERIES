@@ -1,0 +1,26 @@
+
+mysql> select *from CustomerRecords;
++---------+-----------+--------+-------+
+| cust_id | cust_name | city   | phone |
++---------+-----------+--------+-------+
+|     101 | riya      | pune   | 98765 |
+|     102 | aman      | mumbai | 87654 |
+|     103 | sneha     | pune   | 76543 |
+|     104 | karan     | nahik  | 65432 |
++---------+-----------+--------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create view CustomerBasicView  as
+    -> select cust_id,cust_name from CustomerRecords;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from CustomerBasicView;
++---------+-----------+
+| cust_id | cust_name |
++---------+-----------+
+|     101 | riya      |
+|     102 | aman      |
+|     103 | sneha     |
+|     104 | karan     |
++---------+-----------+
+4 rows in set (0.01 sec)
