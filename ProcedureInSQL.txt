@@ -1,0 +1,46 @@
+mysql> CREATE TABLE employee (
+    ->     eid INT,
+    ->     empname VARCHAR(50),
+    ->     salary INT,
+    ->     city VARCHAR(50),
+    ->     dept VARCHAR(50)
+    -> );
+ERROR 1050 (42S01): Table 'employee' already exists
+mysql>
+mysql> INSERT INTO employee VALUES
+    -> (101, 'Amit', 30000, 'Pune', 'IT'),
+    -> (102, 'Rahul', 45000, 'Mumbai', 'HR'),
+    -> (103, 'Sneha', 60000, 'Pune', 'IT'),
+    -> (104, 'Priya', 35000, 'Nashik', 'Sales'),
+    -> (105, 'Kiran', 50000, 'Mumbai', 'IT');
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE PROCEDURE showEmployees()
+    -> BEGIN
+    ->     SELECT * FROM employee;
+    -> END //
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> CALL showEmployees();
++------+---------+--------+--------+-------+
+| eid  | empname | salary | city   | dept  |
++------+---------+--------+--------+-------+
+|  101 | Amit    |  30000 | Pune   | IT    |
+|  102 | Rahul   |  45000 | Mumbai | HR    |
+|  103 | Sneha   |  60000 | Pune   | IT    |
+|  104 | Priya   |  35000 | Nashik | Sales |
+|  105 | Kiran   |  50000 | Mumbai | IT    |
+|  101 | Amit    |  30000 | Pune   | IT    |
+|  102 | Rahul   |  45000 | Mumbai | HR    |
+|  103 | Sneha   |  60000 | Pune   | IT    |
+|  104 | Priya   |  35000 | Nashik | Sales |
+|  105 | Kiran   |  50000 | Mumbai | IT    |
++------+---------+--------+--------+-------+
+10 rows in set (0.01 sec)
+
+Query OK, 0 rows affected (0.03 sec)
