@@ -1,0 +1,44 @@
+mysql> select *from student ;             // table created
++------+-------+--------+-------+
+| sid  | sname | city   | marks |
++------+-------+--------+-------+
+|    1 | amit  | pune   |    45 |
+|    2 | rahul | mumbai |    75 |
+|    3 | sneha | pune   |    90 |
+|    4 | priya | nashik |    85 |
++------+-------+--------+-------+
+4 rows in set (0.00 sec)
+
+
+
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u user -p  // login user
+Enter password: *******
+
+
+mysql> select *from student;                    //permission 
++------+-------+--------+-------+
+| sid  | sname | city   | marks |
++------+-------+--------+-------+
+|    1 | amit  | pune   |    45 |
+|    2 | rahul | mumbai |    75 |
+|    3 | sneha | pune   |    90 |
+|    4 | priya | nashik |    85 |
++------+-------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values
+    -> (5,'kiran','pune',88);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from student;
++------+-------+--------+-------+
+| sid  | sname | city   | marks |
++------+-------+--------+-------+
+|    1 | amit  | pune   |    45 |
+|    2 | rahul | mumbai |    75 |
+|    3 | sneha | pune   |    90 |
+|    4 | priya | nashik |    85 |
+|    5 | kiran | pune   |    88 |
++------+-------+--------+-------+
+5 rows in set (0.00 sec)
