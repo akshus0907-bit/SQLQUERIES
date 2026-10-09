@@ -1,0 +1,38 @@
+mysql> select *from Customer;
++-------------+---------------+--------+------------+
+| customer_id | customer_name | city   | membership |
++-------------+---------------+--------+------------+
+|           1 | Amit          | Pune   | Gold       |
+|           2 | Priya         | Mumbai | Silver     |
+|           3 | Rahul         | Pune   | Gold       |
+|           4 | Sneha         | Nashik | Silver     |
+|           5 | Neha          | Mumbai | Gold       |
+|           6 | Karan         | Pune   | Bronze     |
+|           7 | Pooja         | Nashik | Gold       |
++-------------+---------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select *from Orders;
++----------+--------------+--------+-----------+-------------+
+| order_id | product_name | amount | status    | customer_id |
++----------+--------------+--------+-----------+-------------+
+|      101 | Laptop       |  50000 | Delivered |           1 |
+|      102 | Mobile       |  15000 | Pending   |           2 |
+|      103 | Mouse        |    800 | Delivered |           1 |
+|      104 | Keyboard     |   3000 | Cancelled |           3 |
+|      105 | Monitor      |  12000 | Delivered |           5 |
+|      106 | Mobile       |  18000 | Delivered |           3 |
+|      107 | Laptop       |  45000 | Pending   |           6 |
+|      108 | Headphones   |   2000 | Delivered |           2 |
+|      109 | Tablet       |  22000 | Cancelled |           5 |
++----------+--------------+--------+-----------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> select c.customer_id,c.customer_name from Customer c where exists(select 1 from Orders o where c.customer_id=o.customer_id and o.product_name='laptop');
++-------------+---------------+
+| customer_id | customer_name |
++-------------+---------------+
+|           1 | Amit          |
+|           6 | Karan         |
++-------------+---------------+
+2 rows in set (0.00 sec)
