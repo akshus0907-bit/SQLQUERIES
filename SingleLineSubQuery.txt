@@ -1,0 +1,36 @@
+mysql> select *from Departments;
++--------------+----------------+----------+
+| DepartmentID | DepartmentName | Location |
++--------------+----------------+----------+
+|            1 | IT             | Pune     |
+|            2 | HR             | Mumbai   |
+|            3 | Finance        | Pune     |
+|            4 | Sales          | Delhi    |
+|            5 | Marketing      | Mumbai   |
++--------------+----------------+----------+
+5 rows in set (0.01 sec)
+
+mysql> select *from Employees;
++------------+-------+--------+--------------+
+| EmployeeID | Name  | Salary | DepartmentID |
++------------+-------+--------+--------------+
+|        101 | Amit  |  40000 |            1 |
+|        102 | Priya |  30000 |            2 |
+|        103 | Rahul |  50000 |            1 |
+|        104 | Sneha |  45000 |            3 |
+|        105 | Neha  |  60000 |            3 |
+|        106 | Karan |  35000 |            4 |
+|        107 | Pooja |  55000 |            2 |
+|        108 | Rohan |  25000 |         NULL |
++------------+-------+--------+--------------+
+8 rows in set (0.00 sec)
+
+
+mysql> select Name ,Salary from Employees where Salary=
+    -> (select min(salary) from Employees);
++-------+--------+
+| Name  | Salary |
++-------+--------+
+| Rohan |  25000 |
++-------+--------+
+1 row in set (0.03 sec)
