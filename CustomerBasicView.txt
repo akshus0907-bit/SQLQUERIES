@@ -14,7 +14,8 @@ mysql> create view CustomerBasicView  as
     -> select cust_id,cust_name from CustomerRecords;
 Query OK, 0 rows affected (0.01 sec)
 
-mysql> select *from CustomerBasicView;
+mysql> select *from 
+;
 +---------+-----------+
 | cust_id | cust_name |
 +---------+-----------+

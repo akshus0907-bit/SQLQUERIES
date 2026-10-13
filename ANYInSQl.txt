@@ -1,0 +1,50 @@
+input:
+
+sql> select *from Project;
++-----+-----------------+----------+
+| pid | projname        | location |
++-----+-----------------+----------+
+|   1 | Banking App     | Mumbai   |
+|   2 | E-Commerce      | Pune     |
+|   3 | Payroll System  | Mumbai   |
+|   4 | Cloud Migration | Delhi    |
++-----+-----------------+----------+
+4 rows in set (0.01 sec)
+
+mysql> select *from Employee;
++-----+---------+--------+------+
+| eid | empname | salary | pid  |
++-----+---------+--------+------+
+|   1 | Amit    |  40000 |    1 |
+|   2 | Priya   |  30000 |    2 |
+|   3 | Rahul   |  50000 |    1 |
+|   4 | Sneha   |  45000 |    3 |
+|   5 | Neha    |  60000 |    4 |
+|   6 | Karan   |  35000 |    2 |
+|   7 | Pooja   |  55000 |    3 |
+|   8 | Rohan   |  25000 | NULL |
++-----+---------+--------+------+
+8 rows in set (0.04 sec)
+
+
+output:
+
+mysql> select empname from Employee where salary>ANY
+    -> (select salary from Employee where pid=2);
++---------+
+| empname |
++---------+
+| Amit    |
+| Rahul   |
+| Sneha   |
+| Neha    |
+| Karan   |
+| Pooja   |
++---------+
+6 rows in set (0.01 sec)
+
+mysql>
+
+
+
+
