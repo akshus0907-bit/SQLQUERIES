@@ -1,0 +1,102 @@
+mysql> SELECT * FROM Members;
++-----------+-------------+---------+------------+
+| member_id | member_name | city    | join_date  |
++-----------+-------------+---------+------------+
+|         1 | Akash       | Pune    | 2025-01-10 |
+|         2 | Priya       | Mumbai  | 2025-02-15 |
+|         3 | Rahul       | Nashik  | 2025-03-20 |
+|         4 | Sneha       | Pune    | 2025-04-05 |
+|         5 | Amit        | Jalgaon | 2025-05-12 |
+|         6 | Neha        | Nashik  | 2025-06-18 |
++-----------+-------------+---------+------------+
+6 rows in set (0.03 sec)
+
+mysql> SELECT * FROM Books;
++---------+------------------+--------------------+-------------+--------+
+| book_id | book_name        | author             | category    | price  |
++---------+------------------+--------------------+-------------+--------+
+|     101 | Java Programming | James Gosling      | Programming | 550.00 |
+|     102 | SQL Mastery      | John Smith         | Database    | 450.00 |
+|     103 | Python Basics    | Mark Lee           | Programming | 400.00 |
+|     104 | Wings of Fire    | A.P.J. Abdul Kalam | Biography   | 300.00 |
+|     105 | Clean Code       | Robert Martin      | Programming | 650.00 |
+|     106 | The Alchemist    | Paulo Coelho       | Fiction     | 350.00 |
++---------+------------------+--------------------+-------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM BorrowRecords;
++-----------+-----------+---------+-------------+-------------+
+| borrow_id | member_id | book_id | borrow_date | return_date |
++-----------+-----------+---------+-------------+-------------+
+|         1 |         1 |     101 | 2025-07-01  | 2025-07-10  |
+|         2 |         1 |     102 | 2025-07-12  | 2025-07-20  |
+|         3 |         2 |     101 | 2025-07-05  | 2025-07-15  |
+|         4 |         3 |     103 | 2025-07-08  | NULL        |
+|         5 |         2 |     104 | 2025-07-18  | 2025-07-25  |
+|         6 |         4 |     101 | 2025-08-01  | NULL        |
+|         7 |         5 |     102 | 2025-08-05  | 2025-08-12  |
+|         8 |         1 |     103 | 2025-08-10  | NULL        |
+|         9 |         3 |     102 | 2025-08-15  | NULL        |
++-----------+-----------+---------+-------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> select  m.member_name ,b.book_name ,b.author,bs.borrow_date, bs.return_date from members join borrowrecords on m.member_id=bs.member_id join Books on bs.book_id=b.book_id;
+ERROR 1054 (42S22): Unknown column 'm.member_name' in 'field list'
+mysql> select  m.member_name ,b.book_name ,b.author,bs.borrow_date, bs.return_date from members m join borrowrecords bs on m.member_id=bs.member_id join Books  b on bs.book_id=b.book_id;
++-------------+------------------+--------------------+-------------+-------------+
+| member_name | book_name        | author             | borrow_date | return_date |
++-------------+------------------+--------------------+-------------+-------------+
+| Akash       | Java Programming | James Gosling      | 2025-07-01  | 2025-07-10  |
+| Akash       | SQL Mastery      | John Smith         | 2025-07-12  | 2025-07-20  |
+| Akash       | Python Basics    | Mark Lee           | 2025-08-10  | NULL        |
+| Priya       | Java Programming | James Gosling      | 2025-07-05  | 2025-07-15  |
+| Priya       | Wings of Fire    | A.P.J. Abdul Kalam | 2025-07-18  | 2025-07-25  |
+| Rahul       | Python Basics    | Mark Lee           | 2025-07-08  | NULL        |
+| Rahul       | SQL Mastery      | John Smith         | 2025-08-15  | NULL        |
+| Sneha       | Java Programming | James Gosling      | 2025-08-01  | NULL        |
+| Amit        | SQL Mastery      | John Smith         | 2025-08-05  | 2025-08-12  |
++-------------+------------------+--------------------+-------------+-------------+
+9 rows in set (0.01 sec)
+       ^C
+mysql> select member_id,member_name,city ,join_date from members where member_id not in(select distince member_id from borrowrecords where member_id is not null);
+ERROR 1054 (42S22): Unknown column 'distince' in 'field list'
+mysql> select member_id,member_name,city ,join_date from members where member_id not in(select distinct member_id from borrowrecords where member_id is not null);
++-----------+-------------+--------+------------+
+| member_id | member_name | city   | join_date  |
++-----------+-------------+--------+------------+
+|         6 | Neha        | Nashik | 2025-06-18 |
++-----------+-------------+--------+------------+
+1 row in set (0.04 sec)
+
+mysql> select b.book_name ,count(bs.borrow_id) from Books b join borrowrecords bs on b.book_id=bs.book_id  h group by b.category having count(bs.borrow_id)>1 ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'h group by b.category having count(bs.borrow_id)>1' at line 1
+mysql> SELECT b.category, COUNT(bs.borrow_id)
+    -> FROM Books b
+    -> JOIN borrowrecords bs ON b.book_id = bs.book_id
+    -> GROUP BY b.category
+    -> HAVING COUNT(bs.borrow_id) > 1;
++-------------+---------------------+
+| category    | COUNT(bs.borrow_id) |
++-------------+---------------------+
+| Programming |                   5 |
+| Database    |                   3 |
++-------------+---------------------+
+2 rows in set (0.05 sec)
+
+mysql> SELECT b.book_name, COUNT(bs.borrow_id) AS total_borrowing_count
+    -> FROM Books b
+    -> JOIN borrowrecords bs ON b.book_id = bs.book_id
+    -> GROUP BY b.book_id, b.book_name
+    -> HAVING COUNT(bs.borrow_id) > 1
+    -> ORDER BY total_borrowing_count DESC;
++------------------+-----------------------+
+| book_name        | total_borrowing_count |
++------------------+-----------------------+
+| Java Programming |                     3 |
+| SQL Mastery      |                     3 |
+| Python Basics    |                     2 |
++------------------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql>
+mysql>
